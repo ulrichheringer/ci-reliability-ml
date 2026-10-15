@@ -1,12 +1,12 @@
 # ci-reliability-ml
 
-Classifica causas de falha de CI por texto e estima risco de flaky tests a partir de sinais históricos tabulares.
+Classifies CI failure causes from log text and estimates flaky-test risk from historical test signals.
 
-## Dados
+## Data
 
-O pipeline gera dados sintéticos determinísticos localmente, identificados como sintéticos em `pipeline.py`. Nenhum dado privado ou download externo é necessário. A divisão e a semente de avaliação são descritas junto às métricas abaixo.
+Deterministic synthetic data is generated locally in `pipeline.py`. No private data or external download is required.
 
-## Instalação e execução
+## Install and run
 
 ```bash
 python -m venv .venv
@@ -18,8 +18,10 @@ python cli.py train --model model.joblib
 python cli.py predict --model model.joblib
 ```
 
-## Métricas obtidas
+## Evaluation results
 
-Seed 42: holdout por templates para causas de CI — acurácia **0,8333**, F1 macro **0,8667** (72 logs); holdout estratificado para risco flaky — acurácia **0,9120**, F1 **0,9461**, ROC AUC **0,9874** (250 testes). São medições do conjunto sintético e não afirmam desempenho em dados de produção.
+With seed 42, a template-grouped holdout for CI failure causes reached 0.8333 accuracy and 0.8667 macro F1 across 72 logs. A stratified holdout for flaky-test risk reached 0.9120 accuracy, 0.9461 F1, and 0.9874 ROC AUC across 250 tests. These are measurements on synthetic data, not production CI runs.
 
-Limitação: dados e regras de geração simplificados; antes de uso real, substitua-os por dados com licença e proveniência adequadas e valide fora da amostra.
+## Limitations
+
+The examples and generation rules are simplified. Real use would require appropriately licensed CI history and validation on data from separate time periods or projects.
